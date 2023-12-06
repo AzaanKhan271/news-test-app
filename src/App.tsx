@@ -8,7 +8,6 @@ import Router from "./router/Router";
 
 const App = () => {
   const [lightMode, setLightMode] = useState<Boolean>(true);
-  // const { lightMode, setLightMode } = useContext(MyContext);
   return (
     <MyContext.Provider value={{ lightMode, setLightMode }}>
       <ThemeProvider theme={lightMode ? lightTheme : darkTheme}>
