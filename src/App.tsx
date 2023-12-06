@@ -8,8 +8,19 @@ import Router from "./router/Router";
 
 const App = () => {
   const [lightMode, setLightMode] = useState<Boolean>(true);
+  const [language, setLanguage] = useState<string>("");
+  const [topic, setTopic] = useState<string>("");
   return (
-    <MyContext.Provider value={{ lightMode, setLightMode }}>
+    <MyContext.Provider
+      value={{
+        lightMode,
+        setLightMode,
+        language,
+        setLanguage,
+        topic,
+        setTopic,
+      }}
+    >
       <ThemeProvider theme={lightMode ? lightTheme : darkTheme}>
         <CssBaseline />
         <Router />

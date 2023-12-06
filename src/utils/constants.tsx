@@ -10,3 +10,10 @@ export const lightTheme = createTheme({
     mode: "light",
   },
 });
+
+export const langOptionArray = [
+    {value : 'en' ,label : 'English'},
+    {value : 'ar' ,label : 'Arabic'}
+]
+
+export const topics = ['apple' , 'meta' , 'netflix' , 'google' , 'twitter' , 'tesla' ]

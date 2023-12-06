@@ -5,3 +5,17 @@
     align-items: center;
     flex-direction: column;
 }
+
+.homeContentDiv{
+    width: 500px;
+}
+
+.homeHeadingParent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chipParent {
+    margin: 20px;
+}
