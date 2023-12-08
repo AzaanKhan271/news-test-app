@@ -4,7 +4,6 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
 import { Box } from "@mui/material";
-import { SetStateAction } from "react";
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -54,18 +53,18 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 }));
 
 interface toggleBtnParams {
-    value : boolean,
-    setValue : SetStateAction<boolean>
+  value: Boolean;
+  setValue: (e: Boolean) => void;
 }
 
-const ToggleBtn = ( { value , setValue } : toggleBtnParams) => {
+const ToggleBtn = ({ value, setValue }: toggleBtnParams) => {
   return (
     <Box>
       <FormGroup>
         <FormControlLabel
           control={<MaterialUISwitch sx={{ m: 1 }} />}
           label=""
-          onChange={()=>setValue(!value)}
+          onChange={() => setValue(!value)}
           value={value}
         />
       </FormGroup>

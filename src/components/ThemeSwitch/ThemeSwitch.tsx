@@ -1,14 +1,15 @@
-import { Box } from '@mui/material'
-import ToggleBtn from '../../UI/toggleBtn'
-import './themeSwitch.css'
-import { useContext } from 'react';
-import { MyContext } from '../../context/myContext';
+import { Box } from "@mui/material";
+import ToggleBtn from "../../UI/ToggleBtn";
+import "./themeSwitch.css";
+import { useAppContext } from "../../context/myContext";
 
 const ThemeSwitch = () => {
-  const { lightMode, setLightMode } = useContext(MyContext);
-    return <Box className='themeSwitchParent'>
-        <ToggleBtn value={lightMode} setValue={setLightMode}/>
+  const { lightMode, updateLightMode } = useAppContext();
+  return (
+    <Box className="themeSwitchParent">
+      <ToggleBtn value={lightMode} setValue={updateLightMode} />
     </Box>
-}
+  );
+};
 
-export default ThemeSwitch
+export default ThemeSwitch;

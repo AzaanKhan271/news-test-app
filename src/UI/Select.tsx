@@ -1,19 +1,21 @@
-import { FormControl, MenuItem, Select, InputLabel } from "@mui/material";
+import {
+  FormControl,
+  MenuItem,
+  Select,
+  InputLabel,
+  SelectChangeEvent,
+} from "@mui/material";
+import { ReactNode } from "react";
 
+interface OptionArrayProps {
+  value: string;
+  label: string;
+}
 interface SelectProps {
   value: string;
-  handleChange: () => void;
+  handleChange: (e: SelectChangeEvent<string>, child: ReactNode) => void;
   label: string;
-  optionArray: [
-    {
-      value: string;
-      label: string;
-    },
-    {
-      value: string;
-      label: string;
-    }
-  ];
+  optionArray: OptionArrayProps[];
 }
 
 const SelectInput = ({

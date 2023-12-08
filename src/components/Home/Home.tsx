@@ -2,17 +2,12 @@ import { Box, InputLabel } from "@mui/material";
 import "./home.css";
 import ThemeSwitch from "../ThemeSwitch/ThemeSwitch";
 import SelectInput from "../../UI/Select";
-import { useContext } from "react";
-import { MyContext } from "../../context/myContext";
+import { useAppContext } from "../../context/myContext";
 import { langOptionArray, topics } from "../../utils/constants";
 import ChipRenderer from "../../UI/ChipRenderer";
 
 const Home = () => {
-  const { language, setLanguage, topic, setTopic } = useContext(MyContext);
-
-  const handleChipClick = (e) => {
-    setTopic(e.target.innerHTML)
-  }
+  const { language, updateLanguage, topic, updateTopic } = useAppContext();
   return (
     <Box className="homeParent">
       <Box>
@@ -24,7 +19,7 @@ const Home = () => {
         </Box>
         <SelectInput
           value={language}
-          handleChange={(e) => setLanguage(e.target.value)}
+          handleChange={(e) => updateLanguage(e.target.value)}
           label="Select language"
           optionArray={langOptionArray}
         />
@@ -32,7 +27,10 @@ const Home = () => {
           <InputLabel>Select Topic</InputLabel>
           <ChipRenderer
             chipArray={topics}
-            handleChipChange={handleChipClick}
+            handleChipChange={(e) => {
+              updateTopic(e.currentTarget.innerText);
+            }}
+            topic={topic}
           />
         </Box>
       </Box>
