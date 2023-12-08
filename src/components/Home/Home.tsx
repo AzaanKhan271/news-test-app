@@ -3,11 +3,19 @@ import "./home.css";
 import ThemeSwitch from "../ThemeSwitch/ThemeSwitch";
 import SelectInput from "../../UI/Select";
 import { useAppContext } from "../../context/myContext";
-import { langOptionArray, topics } from "../../utils/constants";
+import { getTodayAndSevenDaysAgo, langOptionArray, topics } from "../../utils/constants";
 import ChipRenderer from "../../UI/ChipRenderer";
+import { useEffect } from "react";
+import { getNewsArticles } from "../../Services/services";
 
 const Home = () => {
   const { language, updateLanguage, topic, updateTopic } = useAppContext();
+//   const { today, sevenDaysAgo } = getTodayAndSevenDaysAgo();
+
+
+useEffect(()=>{
+    getNewsArticles()
+},[])
   return (
     <Box className="homeParent">
       <Box>
