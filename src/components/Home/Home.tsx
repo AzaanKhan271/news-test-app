@@ -3,7 +3,7 @@ import "./home.css";
 import ThemeSwitch from "../ThemeSwitch/ThemeSwitch";
 import SelectInput from "../../UI/Select";
 import { useAppContext } from "../../context/myContext";
-import { getTodayAndSevenDaysAgo, langOptionArray, topics } from "../../utils/constants";
+import { langOptionArray, topics } from "../../utils/constants";
 import ChipRenderer from "../../UI/ChipRenderer";
 import { useEffect } from "react";
 import { getNewsArticles } from "../../Services/services";

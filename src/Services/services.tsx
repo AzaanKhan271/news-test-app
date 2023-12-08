@@ -1,14 +1,14 @@
 import axios from 'axios'
 import { baseUrl } from '../utils/constants';
 
-interface GetNewsArticleProps {
-    topic : string,
-    language : string,
-    toDate : Object,
-    fromDate : Date,
-    apiKey : string,
-    sortBy : string,
-}
+// interface GetNewsArticleProps {
+//     topic : string,
+//     language : string,
+//     toDate : Object,
+//     fromDate : Date,
+//     apiKey : string,
+//     sortBy : string,
+// }
 
 
 export const getNewsArticles = async () => {
