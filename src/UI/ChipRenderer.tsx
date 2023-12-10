@@ -1,12 +1,6 @@
 import { Chip, Stack } from "@mui/material";
 import "./ui.css";
-import { MouseEventHandler } from "react";
-
-interface ChipRenderTypes {
-  chipArray: string[];
-  handleChipChange: MouseEventHandler<HTMLDivElement>;
-  topic: string;
-}
+import { ChipRenderTypes } from "../utils/interface";
 
 const ChipRenderer = ({
   chipArray,

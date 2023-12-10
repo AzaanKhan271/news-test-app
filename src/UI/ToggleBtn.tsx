@@ -4,6 +4,7 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
 import { Box } from "@mui/material";
+import { toggleBtnParams } from "../utils/interface";
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -51,11 +52,6 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     borderRadius: 20 / 2,
   },
 }));
-
-interface toggleBtnParams {
-  value: Boolean;
-  setValue: (e: Boolean) => void;
-}
 
 const ToggleBtn = ({ value, setValue }: toggleBtnParams) => {
   return (

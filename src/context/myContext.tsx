@@ -1,13 +1,5 @@
 import { ReactNode, createContext, useContext, useState } from "react";
-
-interface AppContextProps {
-  lightMode: Boolean;
-  updateLightMode: (e: Boolean) => void;
-  topic: string;
-  updateTopic: (e: string) => void;
-  language: string;
-  updateLanguage: (e: string) => void;
-}
+import { AppContextProps, DynamicObject } from "../utils/interface";
 
 const AppContext = createContext<AppContextProps | undefined>(undefined);
 
@@ -15,6 +7,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [lightMode, setLightMode] = useState<Boolean>(true);
   const [language, setLanguage] = useState<string>("");
   const [topic, setTopic] = useState<string>("");
+  const [articles, setArticles] = useState<DynamicObject[]>([]);
 
   const updateLightMode = (e: Boolean) => {
     setLightMode(e);
@@ -28,6 +21,10 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     setTopic(e);
   };
 
+  const updateArticles = (e: DynamicObject[]) => {
+    setArticles(e);
+  };
+
   const contextValue: AppContextProps = {
     lightMode,
     updateLightMode,
@@ -35,6 +32,8 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     updateLanguage,
     topic,
     updateTopic,
+    articles,
+    updateArticles,
   };
 
   return (

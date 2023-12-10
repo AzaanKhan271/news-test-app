@@ -1,14 +1,6 @@
 import axios from "axios";
 import { baseUrl } from "../utils/constants";
-
-interface GetNewsArticleProps {
-  topic: string;
-  language: string;
-  toDate: string;
-  fromDate: string;
-  apiKey: string | undefined;
-  sortBy: string;
-}
+import { GetNewsArticleProps } from "../utils/interface";
 
 export const getNewsArticles = async ({
   topic,
@@ -18,7 +10,9 @@ export const getNewsArticles = async ({
   apiKey,
   sortBy,
 }: GetNewsArticleProps) => {
-  const API_URL = `${import.meta.env.VITE_PROXYLINK}/${baseUrl}/everything?q=${topic}&from=${fromDate}&to=${toDate}&sortBy=${sortBy}&language=${language}&apiKey=${apiKey}`;
+  const API_URL = `${
+    import.meta.env.VITE_PROXYLINK
+  }/${baseUrl}/everything?q=${topic}&from=${fromDate}&to=${toDate}&sortBy=${sortBy}&language=${language}&apiKey=${apiKey}`;
   const response = await axios.get(API_URL, {
     headers: {
       "Access-Control-Allow-Origin": "*",
