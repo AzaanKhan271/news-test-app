@@ -22,7 +22,7 @@ const Home = () => {
       topic,
       toDate: datePipe(today),
       fromDate: datePipe(sevenDaysAgo),
-      apiKey: process.env.REACT_APP_API_KEY,
+      apiKey: import.meta.env.VITE_API_KEY,
       sortBy: "publishedAt",
     };
     getNewsArticles(body)
