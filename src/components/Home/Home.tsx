@@ -1,21 +1,39 @@
-import { Box, InputLabel } from "@mui/material";
+import { Box, Button, InputLabel } from "@mui/material";
 import "./home.css";
 import ThemeSwitch from "../ThemeSwitch/ThemeSwitch";
 import SelectInput from "../../UI/Select";
 import { useAppContext } from "../../context/myContext";
-import { langOptionArray, topics } from "../../utils/constants";
+import {
+  datePipe,
+  getTodayAndSevenDaysAgo,
+  langOptionArray,
+  topics,
+} from "../../utils/constants";
 import ChipRenderer from "../../UI/ChipRenderer";
-import { useEffect } from "react";
 import { getNewsArticles } from "../../Services/services";
 
 const Home = () => {
   const { language, updateLanguage, topic, updateTopic } = useAppContext();
-//   const { today, sevenDaysAgo } = getTodayAndSevenDaysAgo();
+  const { today, sevenDaysAgo } = getTodayAndSevenDaysAgo();
 
+  const handleClick = () => {
+    let body = {
+      language,
+      topic,
+      toDate: datePipe(today),
+      fromDate: datePipe(sevenDaysAgo),
+      apiKey: process.env.REACT_APP_API_KEY,
+      sortBy: "publishedAt",
+    };
+    getNewsArticles(body)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
-useEffect(()=>{
-    getNewsArticles()
-},[])
   return (
     <Box className="homeParent">
       <Box>
@@ -40,6 +58,11 @@ useEffect(()=>{
             }}
             topic={topic}
           />
+        </Box>
+        <Box className="fetchBtnParent">
+          <Button variant="outlined" onClick={handleClick}>
+            Fetch News
+          </Button>
         </Box>
       </Box>
     </Box>

@@ -19,3 +19,9 @@
 .chipParent {
     margin: 20px 0px;
 }
+
+.fetchBtnParent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
