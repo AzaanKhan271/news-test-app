@@ -1,5 +1,5 @@
 import { SelectChangeEvent } from "@mui/material";
-import { MouseEventHandler, ReactNode } from "react";
+import { ChangeEvent, MouseEventHandler, ReactNode } from "react";
 
 export interface toggleBtnParams {
   value: Boolean;
@@ -19,7 +19,7 @@ export interface SelectProps {
 
 export interface ChipRenderTypes {
   chipArray: string[];
-  handleChipChange: MouseEventHandler<HTMLDivElement>;
+  handleChipChange: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
   topic: string;
 }
 

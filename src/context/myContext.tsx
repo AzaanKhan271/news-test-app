@@ -22,6 +22,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const updateArticles = (e: DynamicObject[]) => {
+    console.log(e)
     setArticles(e);
   };
 

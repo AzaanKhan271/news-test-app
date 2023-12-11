@@ -13,7 +13,7 @@ import ChipRenderer from "../../UI/ChipRenderer";
 import { getNewsArticles } from "../../Services/services";
 
 const Home = () => {
-  const { language, updateLanguage, topic, updateTopic } = useAppContext();
+  const { language, updateLanguage, topic, updateTopic , updateArticles} = useAppContext();
   const { today, sevenDaysAgo } = getTodayAndSevenDaysAgo();
 
   const handleClick = () => {
@@ -28,6 +28,11 @@ const Home = () => {
     getNewsArticles(body)
       .then((res) => {
         console.log(res);
+        updateArticles(res.articles)
+        localStorage.setItem('articles', JSON.stringify(res.articles));
+        setTimeout(() => {
+            window.open('/articles', '_blank')
+        }, 1000);
       })
       .catch((err) => {
         console.log(err);
@@ -54,7 +59,7 @@ const Home = () => {
           <ChipRenderer
             chipArray={topics}
             handleChipChange={(e) => {
-              updateTopic(e.currentTarget.innerText);
+              updateTopic(e.target.value);
             }}
             topic={topic}
           />

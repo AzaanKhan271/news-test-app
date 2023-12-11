@@ -1,4 +1,10 @@
-import { Chip, Stack } from "@mui/material";
+import {
+  Chip,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+  Stack,
+} from "@mui/material";
 import "./ui.css";
 import { ChipRenderTypes } from "../utils/interface";
 
@@ -14,18 +20,31 @@ const ChipRenderer = ({
       direction="row"
       spacing={1}
     >
-      {chipArray.map((item, index) => {
-        return (
-          <Chip
-            label={item}
-            key={index}
-            variant={"outlined"}
-            onClick={handleChipChange}
-            style={{ background: item === topic ? "#ccc" : "transparent" }}
-            className="chipDiv"
-          />
-        );
-      })}
+      <RadioGroup
+        row
+        aria-label="options"
+        name="options"
+        value={topic}
+        onChange={handleChipChange}
+      >
+        {chipArray.map((item, index) => {
+          return (
+            <FormControlLabel
+              key={index}
+              value={item}
+              control={<Radio style={{ display: "none" }} />}
+              label={
+                <Chip
+                  style={{ background: item === topic ? "#ccc" : "transparent" }}
+                  label={item}
+                  variant={"outlined"}
+                  className="chipDiv"
+                />
+              }
+            />
+          );
+        })}
+      </RadioGroup>
     </Stack>
   );
 };
