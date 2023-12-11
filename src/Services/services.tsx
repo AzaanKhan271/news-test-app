@@ -10,14 +10,8 @@ export const getNewsArticles = async ({
   apiKey,
   sortBy,
 }: GetNewsArticleProps) => {
-  const API_URL = `${
-    import.meta.env.VITE_PROXYLINK
-  }/${baseUrl}/everything?q=${topic}&from=${fromDate}&to=${toDate}&sortBy=${sortBy}&language=${language}&apiKey=${apiKey}`;
-  const response = await axios.get(API_URL, {
-    headers: {
-        Origin: "http://localhost:3000",
-    },
-  });
+  const API_URL = `${baseUrl}/everything?q=${topic}&from=${fromDate}&to=${toDate}&sortBy=${sortBy}&language=${language}&apiKey=${apiKey}`;
+  const response = await axios.get(API_URL);
   if (response) {
     let data = response.data;
     return data;
