@@ -15,7 +15,7 @@ export const getNewsArticles = async ({
   }/${baseUrl}/everything?q=${topic}&from=${fromDate}&to=${toDate}&sortBy=${sortBy}&language=${language}&apiKey=${apiKey}`;
   const response = await axios.get(API_URL, {
     headers: {
-      "Access-Control-Allow-Origin": "*",
+        Origin: "http://localhost:3000",
     },
   });
   if (response) {
