@@ -1,9 +1,9 @@
-import { SelectChangeEvent } from "@mui/material";
+import { AlertColor, SelectChangeEvent } from "@mui/material";
 import { ChangeEvent, ReactNode } from "react";
 
 export interface toggleBtnParams {
-  value: Boolean;
-  setValue: (e: Boolean) => void;
+  value: boolean;
+  setValue: (e: boolean) => void;
 }
 
 export interface OptionArrayProps {
@@ -19,7 +19,10 @@ export interface SelectProps {
 
 export interface ChipRenderTypes {
   chipArray: string[];
-  handleChipChange: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
+  handleChipChange: (
+    event: ChangeEvent<HTMLInputElement>,
+    value: string
+  ) => void;
   topic: string;
 }
 
@@ -33,14 +36,20 @@ export interface DynamicObject {
 }
 
 export interface AppContextProps {
-  lightMode: Boolean;
-  updateLightMode: (e: Boolean) => void;
+  lightMode: boolean;
+  updateLightMode: (e: boolean) => void;
   topic: string;
   updateTopic: (e: string) => void;
   language: string;
   updateLanguage: (e: string) => void;
   articles: DynamicObject[];
   updateArticles: (e: DynamicObject[]) => void;
+  updateSnackBarState: (e: boolean) => void;
+  updateSnackBarType: (e: AlertColor) => void;
+  updateSnackBarMessage: (e: string) => void;
+  snackBarState: boolean;
+  snackBarType: string;
+  snackBarMessage: string;
 }
 
 export interface GetNewsArticleProps {

@@ -15,36 +15,51 @@ import { DynamicObject } from "../../utils/interface";
 import { useState } from "react";
 
 const Home = () => {
-  const { language, updateLanguage, topic, updateTopic } = useAppContext();
+  const {
+    language,
+    updateLanguage,
+    topic,
+    updateTopic,
+    updateSnackBarState,
+    updateSnackBarMessage,
+    updateSnackBarType,
+  } = useAppContext();
   const { today, sevenDaysAgo } = getTodayAndSevenDaysAgo();
-  const [loading,setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const handleClick = () => {
-    setLoading(true)
-    let body = {
-      language,
-      topic,
-      toDate: datePipe(today),
-      fromDate: datePipe(sevenDaysAgo),
-      apiKey: import.meta.env.VITE_API_KEY,
-      sortBy: "publishedAt",
-    };
-    getNewsArticles(body)
-      .then((res) => {
-        setLoading(false)
-        console.log(res);
-        let updatedArticles = res.articles.filter(
-          (item: DynamicObject) => item.title !== "[Removed]"
-        );
-        localStorage.setItem("articles", JSON.stringify(updatedArticles));
-        setTimeout(() => {
-          window.open("/articles", "_blank");
-        }, 1000);
-      })
-      .catch((err) => {
-        console.log(err);
-        setLoading(false)
-      });
+    if (topic) {
+      setLoading(true);
+      let body = {
+        language,
+        topic,
+        toDate: datePipe(today),
+        fromDate: datePipe(sevenDaysAgo),
+        apiKey: import.meta.env.VITE_API_KEY,
+        sortBy: "publishedAt",
+      };
+      getNewsArticles(body)
+        .then((res) => {
+          setLoading(false);
+          let updatedArticles = res.articles.filter(
+            (item: DynamicObject) => item.title !== "[Removed]"
+          );
+          localStorage.setItem("articles", JSON.stringify(updatedArticles));
+          setTimeout(() => {
+            window.open("/articles", "_blank");
+          }, 1000);
+        })
+        .catch((err) => {
+          setLoading(false);
+          updateSnackBarMessage(err?.response?.data?.message);
+          updateSnackBarState(true);
+          updateSnackBarType("error");
+        });
+    } else {
+      updateSnackBarMessage("Please Select any Topic");
+      updateSnackBarType("error");
+      updateSnackBarState(true);
+    }
   };
 
   return (
@@ -73,8 +88,12 @@ const Home = () => {
           />
         </Box>
         <Box className="fetchBtnParent">
-          <Button sx={{width : 130 ,height: 40}} variant="outlined" onClick={handleClick}>
-            {loading ? <CircularProgress size={20} /> : 'Fetch News'}
+          <Button
+            sx={{ width: 130, height: 40 }}
+            variant="outlined"
+            onClick={handleClick}
+          >
+            {loading ? <CircularProgress size={20} /> : "Fetch News"}
           </Button>
         </Box>
       </Box>

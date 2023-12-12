@@ -4,6 +4,7 @@ import "./App.css";
 import { useAppContext } from "./context/myContext";
 import { darkTheme, lightTheme } from "./utils/constants";
 import Router from "./router/Router";
+import SnackBarAlert from "./components/SnackBar/SnackBarAlert";
 
 const App = () => {
   const { lightMode } = useAppContext();
@@ -11,6 +12,7 @@ const App = () => {
     <ThemeProvider theme={lightMode ? lightTheme : darkTheme}>
       <CssBaseline />
       <Router />
+      <SnackBarAlert />
     </ThemeProvider>
   );
 };

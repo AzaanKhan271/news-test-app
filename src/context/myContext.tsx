@@ -1,15 +1,19 @@
 import { ReactNode, createContext, useContext, useState } from "react";
 import { AppContextProps, DynamicObject } from "../utils/interface";
+import { AlertColor } from "@mui/material";
 
 const AppContext = createContext<AppContextProps | undefined>(undefined);
 
 export const AppProvider = ({ children }: { children: ReactNode }) => {
-  const [lightMode, setLightMode] = useState<Boolean>(true);
+  const [lightMode, setLightMode] = useState<boolean>(true);
   const [language, setLanguage] = useState<string>("");
   const [topic, setTopic] = useState<string>("");
   const [articles, setArticles] = useState<DynamicObject[]>([]);
+  const [snackBarState, setSnackBarState] = useState<boolean>(false);
+  const [snackBarMessage, setSnackBarMessage] = useState<string>("");
+  const [snackBarType, setSnackBarType] = useState<AlertColor>("error");
 
-  const updateLightMode = (e: Boolean) => {
+  const updateLightMode = (e: boolean) => {
     setLightMode(e);
   };
 
@@ -20,9 +24,18 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const updateTopic = (e: string) => {
     setTopic(e);
   };
+  const updateSnackBarState = (e: boolean) => {
+    setSnackBarState(e);
+  };
+  const updateSnackBarType = (e: AlertColor) => {
+    setSnackBarType(e);
+  };
+  const updateSnackBarMessage = (e: string) => {
+    setSnackBarMessage(e);
+  };
 
   const updateArticles = (e: DynamicObject[]) => {
-    console.log(e)
+    console.log(e);
     setArticles(e);
   };
 
@@ -35,6 +48,12 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     updateTopic,
     articles,
     updateArticles,
+    updateSnackBarState,
+    updateSnackBarType,
+    updateSnackBarMessage,
+    snackBarState,
+    snackBarType,
+    snackBarMessage,
   };
 
   return (
