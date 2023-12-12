@@ -5,13 +5,7 @@ import { useAppContext } from "../../context/myContext";
 const SnackBarAlert = () => {
   const { snackBarMessage, snackBarState, snackBarType, updateSnackBarState } =
     useAppContext();
-  const handleClose = (
-    event?: React.SyntheticEvent | Event,
-    reason?: string
-  ) => {
-    if (reason === "clickaway") {
-      return;
-    }
+  const handleClose = () => {
     updateSnackBarState(false);
   };
 
