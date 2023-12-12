@@ -1,5 +1,5 @@
 import { SelectChangeEvent } from "@mui/material";
-import { ChangeEvent, MouseEventHandler, ReactNode } from "react";
+import { ChangeEvent, ReactNode } from "react";
 
 export interface toggleBtnParams {
   value: Boolean;

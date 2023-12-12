@@ -1,4 +1,4 @@
-import { Box, Button, InputLabel } from "@mui/material";
+import { Box, Button, CircularProgress, InputLabel } from "@mui/material";
 import "./home.css";
 import ThemeSwitch from "../ThemeSwitch/ThemeSwitch";
 import SelectInput from "../../UI/Select";
@@ -12,13 +12,15 @@ import {
 import ChipRenderer from "../../UI/ChipRenderer";
 import { getNewsArticles } from "../../Services/services";
 import { DynamicObject } from "../../utils/interface";
+import { useState } from "react";
 
 const Home = () => {
-  const { language, updateLanguage, topic, updateTopic, updateArticles } =
-    useAppContext();
+  const { language, updateLanguage, topic, updateTopic } = useAppContext();
   const { today, sevenDaysAgo } = getTodayAndSevenDaysAgo();
+  const [loading,setLoading] = useState(false)
 
   const handleClick = () => {
+    setLoading(true)
     let body = {
       language,
       topic,
@@ -29,6 +31,7 @@ const Home = () => {
     };
     getNewsArticles(body)
       .then((res) => {
+        setLoading(false)
         console.log(res);
         let updatedArticles = res.articles.filter(
           (item: DynamicObject) => item.title !== "[Removed]"
@@ -40,6 +43,7 @@ const Home = () => {
       })
       .catch((err) => {
         console.log(err);
+        setLoading(false)
       });
   };
 
@@ -69,8 +73,8 @@ const Home = () => {
           />
         </Box>
         <Box className="fetchBtnParent">
-          <Button variant="outlined" onClick={handleClick}>
-            Fetch News
+          <Button sx={{width : 130 ,height: 40}} variant="outlined" onClick={handleClick}>
+            {loading ? <CircularProgress size={20} /> : 'Fetch News'}
           </Button>
         </Box>
       </Box>
