@@ -11,9 +11,11 @@ import {
 } from "../../utils/constants";
 import ChipRenderer from "../../UI/ChipRenderer";
 import { getNewsArticles } from "../../Services/services";
+import { DynamicObject } from "../../utils/interface";
 
 const Home = () => {
-  const { language, updateLanguage, topic, updateTopic , updateArticles} = useAppContext();
+  const { language, updateLanguage, topic, updateTopic, updateArticles } =
+    useAppContext();
   const { today, sevenDaysAgo } = getTodayAndSevenDaysAgo();
 
   const handleClick = () => {
@@ -28,10 +30,12 @@ const Home = () => {
     getNewsArticles(body)
       .then((res) => {
         console.log(res);
-        updateArticles(res.articles)
-        localStorage.setItem('articles', JSON.stringify(res.articles));
+        let updatedArticles = res.articles.filter(
+          (item: DynamicObject) => item.title !== "[Removed]"
+        );
+        localStorage.setItem("articles", JSON.stringify(updatedArticles));
         setTimeout(() => {
-            window.open('/articles', '_blank')
+          window.open("/articles", "_blank");
         }, 1000);
       })
       .catch((err) => {

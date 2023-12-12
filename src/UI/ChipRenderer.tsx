@@ -18,6 +18,7 @@ const ChipRenderer = ({
       style={{ width: "100%" }}
       className="chipRendererParent"
       direction="row"
+      sx={{ justifyContent: "space-around" }}
       spacing={1}
     >
       <RadioGroup
@@ -35,7 +36,9 @@ const ChipRenderer = ({
               control={<Radio style={{ display: "none" }} />}
               label={
                 <Chip
-                  style={{ background: item === topic ? "#ccc" : "transparent" }}
+                  style={{
+                    background: item === topic ? "#ccc" : "transparent",
+                  }}
                   label={item}
                   variant={"outlined"}
                   className="chipDiv"
