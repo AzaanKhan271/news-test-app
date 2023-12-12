@@ -7,6 +7,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import placeHolderImg from "../assets/jk-placeholder-image.jpg";
+import { isArabicOrUrdu } from "../utils/constants";
 
 const MediaCard = ({ data, key }: CardProps) => {
   return (
@@ -17,10 +18,10 @@ const MediaCard = ({ data, key }: CardProps) => {
         title={data.content}
       />
       <CardContent sx={{ height: 300 }}>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography sx={{direction : isArabicOrUrdu(data.title) ? "rtl" : "ltr"}} gutterBottom variant="h5" component="div">
           {data.title}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography sx={{direction : isArabicOrUrdu(data.description) ? "rtl" : "ltr"}} variant="body2" color="text.secondary">
           {data.description}
         </Typography>
       </CardContent>

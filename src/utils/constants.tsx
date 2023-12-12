@@ -15,6 +15,14 @@ export const datePipe = (date: Date) => {
   return date.toISOString().slice(0, 10);
 };
 
+export const isArabicOrUrdu = (text: string) => {
+  const urduRegex = /[\u0600-\u06FF\u0750-\u077F\uFB50-\uFDFF\uFE70-\uFEFF]/;
+  const arabicRegex = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/;
+  const containsUrduChars = urduRegex.test(text);
+  const containsArabicChars = arabicRegex.test(text);
+  return containsUrduChars || containsArabicChars;
+};
+
 export const getTodayAndSevenDaysAgo = (): {
   today: Date;
   sevenDaysAgo: Date;
