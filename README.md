@@ -1,8 +1,4 @@
-# Your React App Name
-
-## Description
-
-Briefly describe your React application.
+# News Test App
 
 ## Getting Started
 
