@@ -1,30 +1,57 @@
-# React + TypeScript + Vite
+# Your React App Name
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
 
-Currently, two official plugins are available:
+Briefly describe your React application.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Getting Started
 
-## Expanding the ESLint configuration
+To get a local copy of this project up and running, follow these simple steps.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Prerequisites
 
-- Configure the top-level `parserOptions` property like this:
+Make sure you have Node.js and npm installed on your machine.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+### Installation
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+1. Clone the repository to your local machine:
+
+    ```bash
+    git clone https://github.com/your-username/your-react-app.git
+    ```
+
+2. Navigate to the project directory:
+
+    ```bash
+    cd your-react-app
+    ```
+
+3. Install the project dependencies:
+
+    ```bash
+    npm install
+    ```
+
+### Configuration
+
+To make API requests, you'll need to set up an API key. Follow these steps:
+
+1. Create a new file named `.env` in the root of the project.
+
+2. Open the `.env` file and add the following line, replacing `your-api-key` with your actual API key:
+
+    ```dotenv
+    VITE_API_KEY=your-api-key
+    ```
+
+    Save and close the file.
+
+### Running the App
+
+Now that you have cloned the project and installed dependencies, you can run the app on.
+
+    ```bash
+    npm run dev
+    ```
+
+Now the app will be running on https://localhost:5173
